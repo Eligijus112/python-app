@@ -8,12 +8,6 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 from sklearn.model_selection import train_test_split
-from pathlib import Path
-import os
-
-current_path = Path('C:\\', 'users', 'Eligijus', 'desktop', 'Python', 'ML-app', 
-     'python-app')
-os.chdir(current_path)
 
 ### Defining the share of data that will be in the training data
 
