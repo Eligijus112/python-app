@@ -1,0 +1,4 @@
+image_nr,class_code,p,class_label,path
+3,0,0.99733764,T-shirt/top,input/t1.png
+1,8,1.0,Bag,input/shoe.jpg
+2,8,0.83539194,Bag,input/t-shirt.png
