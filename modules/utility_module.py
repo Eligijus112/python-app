@@ -48,7 +48,6 @@ def construct_fit_frame(fit, decoder_frame):
     fit_df['image_nr'] = index
     fit_df = fit_df.melt(id_vars = 'image_nr', var_name = 'class_code', 
                          value_name = 'p')
-    fit_df = extract_max_row(fit_df, 'p')
     fit_df['class_code'] = fit_df.class_code.astype(int)
     decoder_frame['class_code'] = decoder_frame.class_code.astype(int)
     fit_df = fit_df.merge(decoder_frame, on = 'class_code')

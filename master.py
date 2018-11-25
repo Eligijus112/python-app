@@ -24,20 +24,21 @@ main_model = read_NN_model('main_model/model_specs.json',
 ### Reading and preprocesing all the photos
 
 all_photo = create_path_frame('input', return_mapper = True) 
-d = [img_read(x, h = 28, w = 28) for x in all_photo['path']]
-d = np.asarray(d)
-
-### Predicting the image label probabilities
-
-fit = main_model.predict(d)
-
-### Constructing a data frame to store the results in 
-
-fit_df = construct_fit_frame(fit, class_df)
-fit_df = fit_df.merge(all_photo, on = 'image_nr')
-fit_df = fit_df.sort_values(['image_nr'], ascending = True)
-
-### Saving the results
-
-fit_df.to_csv('output/fitted_clases.csv', index = False)
+if all_photo.empty is not True:
+    d = [img_read(x, h = 28, w = 28) for x in all_photo['path']]
+    d = np.asarray(d)
+    
+    ### Predicting the image label probabilities
+    
+    fit = main_model.predict(d)
+    
+    ### Constructing a data frame to store the results in 
+    
+    fit_df = construct_fit_frame(fit, class_df)
+    fit_df = fit_df.merge(all_photo, on = 'image_nr')
+    fit_df = fit_df.sort_values(['image_nr'], ascending = True)
+    
+    ### Saving the results
+    
+    fit_df.to_csv('output/fitted_clases.csv', index = False)
 
