@@ -6,6 +6,7 @@ The main script that controls the pipeline
 
 import numpy as np
 import pandas as pd
+import os
 
 ### Loading custom functions
 
@@ -40,5 +41,6 @@ if all_photo.empty is not True:
     
     ### Saving the results
     
+    os.mkdir('output')
     fit_df.to_csv('output/fitted_clases.csv', index = False)
 
