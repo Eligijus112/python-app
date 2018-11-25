@@ -9,7 +9,7 @@ import pandas as pd
 
 ### Loading custom functions
 
-from modules.photo_module import img_preproc, img_read
+from modules.photo_module import create_path_frame, img_read
 from modules.utility_module import read_NN_model, construct_fit_frame
 
 ### Reading the class decoder
@@ -23,8 +23,8 @@ main_model = read_NN_model('main_model/model_specs.json',
 
 ### Reading and preprocesing all the photos
 
-all_photo = img_read('input', return_mapper = True) 
-d = [img_preproc(x, h = 28, w = 28) for x in all_photo['path']]
+all_photo = create_path_frame('input', return_mapper = True) 
+d = [img_read(x, h = 28, w = 28) for x in all_photo['path']]
 d = np.asarray(d)
 
 ### Predicting the image label probabilities

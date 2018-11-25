@@ -9,6 +9,10 @@ from tensorflow.keras.models import model_from_json
 def read_NN_model(path_specs, path_weights,
                   loss_f = 'sparse_categorical_crossentropy', 
                   acc_metric = 'accuracy'):
+    """
+    Reads the specification and the weights from saved files. 
+    Additionaly, compiles the model for instant use.
+    """
     json_file = open(path_specs, 'r')
     loaded_model_json = json_file.read()
     json_file.close()
@@ -20,6 +24,11 @@ def read_NN_model(path_specs, path_weights,
     return loaded_model 
     
 def extract_max_row(image_fit_df, max_column):
+    """
+    A very custom function that extracts the image label with the 
+    highest probability. The probability is an outout of the neural network 
+    model fit.
+    """
     all_images = set(image_fit_df['image_nr'])
     all_images = list(all_images)
     
@@ -31,7 +40,9 @@ def extract_max_row(image_fit_df, max_column):
     return image_fit_df[image_fit_df.index.isin(results)]       
 
 def construct_fit_frame(fit, decoder_frame):
-    
+    """
+    Construcs a frame that augments the information from the fited keras model
+    """
     index = range(1, len(fit)+1)
     fit_df = pd.DataFrame(fit, index=index)
     fit_df['image_nr'] = index
